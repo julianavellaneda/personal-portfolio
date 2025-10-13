@@ -3,6 +3,7 @@ import App from './App';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import RequestAccountDeletion from './pages/RequestAccountDeletion';
+import ChildSafetyPolicy from './pages/ChildSafetyPolicy';
 
 // Configuration for different apps
 // const appConfig = {
@@ -26,10 +27,12 @@ const RouterComponent = () => {
       <Route path="/app/gather/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/app/gather/terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="/app/gather/request-account-deletion" element={<RequestAccountDeletion />} />
+      <Route path="/app/gather/child-safety-policy" element={<ChildSafetyPolicy />} />
       {/* Dynamic routes for any app - these will use the same components but could be enhanced to pass app-specific data */}
       <Route path="/app/:appName/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/app/:appName/terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="/app/:appName/request-account-deletion" element={<RequestAccountDeletion />} />
+      <Route path="/app/:appName/child-safety-policy" element={<ChildSafetyPolicy />} />
       {/* Redirect any other route to the main app */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
