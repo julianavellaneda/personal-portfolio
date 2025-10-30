@@ -105,6 +105,10 @@ const PrivacyPolicy = () => {
       <p>
         If you have any questions about this Privacy Policy, please contact us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
       </p>
+      
+      <p className="back-link">
+        <a href={`/legal/app/gather`}>Back to Gather Legal Pages</a>
+      </p>
     </div>
   );
 };

@@ -142,6 +142,10 @@ const ChildSafetyPolicy = () => {
       <p>
         If you have any questions about this Child Safety Policy or if you need to report a child safety concern, please contact us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
       </p>
+      
+      <p className="back-link">
+        <a href={`/legal/app/gather`}>Back to Gather Legal Pages</a>
+      </p>
     </div>
   );
 };

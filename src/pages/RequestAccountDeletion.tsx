@@ -34,6 +34,10 @@ const RequestAccountDeletion = () => {
           The deletion process has begun and may take up to 48 hours to complete. You will receive a final confirmation email once all your data has been permanently removed.
         </p>
         <p>Thank you for using {appName}.</p>
+        
+        <p className="back-link">
+          <a href={`/legal/app/gather`}>Back to Gather Legal Pages</a>
+        </p>
       </div>
     );
   }
@@ -98,6 +102,10 @@ const RequestAccountDeletion = () => {
           Permanently Delete My Account
         </button>
       </form>
+      
+      <p className="back-link">
+        <a href={`/legal/app/gather`}>Back to Gather Legal Pages</a>
+      </p>
     </div>
   );
 };
