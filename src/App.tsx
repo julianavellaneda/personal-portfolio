@@ -3,20 +3,29 @@ import Starfield from 'react-starfield';
 import Header from './components/layout/Header';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
+import Now from './components/sections/Now';
 import Projects from './components/sections/Projects';
 import Skills from './components/sections/Skills';
 import Experience from './components/sections/Experience';
+import Testimonials from './components/sections/Testimonials';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import './App.css';
 import Education from './components/sections/Education';
+import NotFound from './components/sections/NotFound';
 
 const SECTION_IDS = ['about', 'education', 'projects', 'skills', 'experience', 'contact'] as const;
 
+const isHomePath = (pathname: string) =>
+  pathname === '/' || pathname === '' || pathname === '/index.html';
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('');
+  const isHome = isHomePath(window.location.pathname);
 
   useEffect(() => {
+    if (!isHome) return;
+
     const elements = SECTION_IDS
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -34,7 +43,16 @@ const App: React.FC = () => {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  if (!isHome) {
+    return (
+      <div>
+        <NotFound />
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -48,10 +66,12 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <div id="about"><About /></div>
+        <Now />
         <div id="education"><Education /></div>
         <div id="projects"><Projects /></div>
         <div id="skills"><Skills /></div>
         <div id="experience"><Experience /></div>
+        <Testimonials />
         <div id="contact"><Contact /></div>
       </main>
       <Footer />

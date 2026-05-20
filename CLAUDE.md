@@ -14,10 +14,11 @@ For the older agent guide see `GEMINI.md` (kept for reference, but partially sta
 published mobile apps used to live here too, but those now live on a separate
 domain.
 
-**Status:** Phase 1 of `PORTFOLIO_ROADMAP.md` is complete. Phases 2–6 (SEO,
-content, design polish, tech upgrades, blog) are open. Always read the roadmap
-before suggesting work — many "improvements" you might think of are already
-queued there.
+**Status:** Phases 1–3 of `PORTFOLIO_ROADMAP.md` are shipped (Phase 3 has
+placeholder content/assets that still need to be filled in — search `TODO:`).
+Phases 4–6 (design polish, tech upgrades, blog) are open. Always read the
+roadmap before suggesting work — many "improvements" you might think of are
+already queued there.
 
 ---
 
@@ -27,7 +28,8 @@ queued there.
   also work since `package.json` is standard).
 - **Framework:** React 19 + TypeScript (`tsc -b` runs before `vite build`).
 - **Build tool:** Vite 7 with `@vitejs/plugin-react-swc`.
-- **Router:** `react-router-dom` v7.
+- **Router:** none. It's a single page; SPA host fallback (`public/_redirects`)
+  sends every URL to `index.html`, which renders `App`.
 - **Styling:** Plain CSS files per component (`Component.tsx` ↔ `Component.css`),
   global theme variables in `src/index.css`. **Not** CSS Modules despite what
   `GEMINI.md` claims — class names are global. Migrating to Tailwind or CSS
@@ -55,8 +57,7 @@ queued there.
 │   ├── _redirects            # Netlify-style SPA fallback
 │   └── code-tag.svg          # favicon
 └── src/
-    ├── main.tsx              # ReactDOM root + BrowserRouter
-    ├── Router.tsx            # all routes
+    ├── main.tsx              # ReactDOM root → <App />
     ├── App.tsx               # one-pager that composes the sections
     ├── App.css               # just #root layout
     ├── index.css             # global theme tokens (CSS variables)
@@ -73,14 +74,13 @@ queued there.
 
 ## 4. How the app is wired
 
-### 4.1 Routing (`src/Router.tsx`)
+### 4.1 Routing
 
-- `/` → `App` (the portfolio one-pager)
-- `*` → `<Navigate to="/" replace />` (silent redirect — a proper 404 is queued
-  in Phase 3 of the roadmap).
-
-That's it. `react-router-dom` is kept only for the catch-all redirect and the
-future 404 page; if those go away, the dependency can go too.
+There isn't any. `src/main.tsx` renders `<App />` directly — no router. Any URL
+hits SPA fallback (`public/_redirects` on Netlify-style hosts) and lands on the
+one-pager. The "real 404 page" roadmap item will need to handle pathname
+matching itself (a tiny check on `window.location.pathname`, or pull a router
+back in then).
 
 ### 4.2 Main page (`src/App.tsx`)
 

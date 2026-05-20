@@ -5,7 +5,6 @@ Personal portfolio site built with React 19, TypeScript, and Vite.
 ## Stack
 
 - **React 19** + **TypeScript** + **Vite 7**
-- **React Router 7** (single route + SPA catch-all redirect)
 - **EmailJS** for the contact form (no backend)
 - **react-vertical-timeline-component** for the experience timeline
 - **react-starfield** for the hero background
@@ -47,7 +46,6 @@ Any host that supports SPA fallback (Netlify, Vercel, Cloudflare Pages) will wor
 ```
 src/
   App.tsx                 # main one-pager (hero, about, projects, …)
-  Router.tsx              # top-level routes
   components/
     layout/               # Header, Footer
     sections/             # Hero, About, Projects, Skills, Experience, Contact, Education

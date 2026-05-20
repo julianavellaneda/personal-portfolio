@@ -41,18 +41,39 @@ Wired up in the 2026-05-20 session. Canonical host used throughout: `https://jul
 
 ---
 
-## Phase 3 — Content & credibility
+## Phase 3 — Content & credibility ✅ SHIPPED (placeholders need your content)
 
-The site has the *structure* of a portfolio but very little signal. This phase fills in the substance.
+Structural work landed in the 2026-05-20 session. Several items have placeholder
+copy or assets that you need to fill in — search the codebase for `TODO:` to
+find them.
 
-- [ ] **Replace skill percentages** (`Skills.tsx`) — the "Python 90%, HTML 95%" pattern is widely considered cringe. Group by category with logo icons (devicon / Simple Icons); optionally tier as *Daily / Comfortable / Familiar*.
-- [ ] **Tighten the Hero subtitle** — "Software Engineer & Creator" → something specific (e.g., "Software engineer shipping AI-driven mobile apps; teaching K-12 by day").
-- [ ] **Real project case studies** — for each project: problem, your role, what you built, 1-3 screenshots, what you learned. Add at least 2 more projects (GitHub has more than 2 in it, surely).
-- [ ] **Resume PDF download** button in Hero or Header.
-- [ ] **"Now" / "Currently building"** mini-section — keeps the site feeling alive.
-- [ ] **Testimonials** — pull 2–3 short quotes from CodingMinds students/parents/coworkers.
-- [ ] **Better Footer** — nav links, social, "Built with React + Vite", last-updated date.
-- [ ] **Real 404 page** instead of silent redirect to `/`.
+- [x] **Replace skill percentages** — `Skills.tsx` now groups by category, uses
+  Simple-Icons logos, and tiers as *Daily / Comfortable / Familiar*. No more
+  fake percentage bars.
+- [x] **Tighten the Hero subtitle** — now "Software engineer shipping AI-driven
+  mobile apps. Teaching K–12 by day."
+- [x] **Real project case studies** — `Projects.tsx` schema extended with
+  `problem`, `role`, `built`, `learned`, and optional `screenshots`. Modal
+  renders the new fields when present. GlucoBake and EcoWise filled in;
+  two placeholder projects added. **Still TODO for you**: replace the two
+  placeholders with real projects from GitHub, drop screenshots into
+  `public/projects/<slug>/`, and uncomment the `screenshots` arrays.
+- [x] **Resume PDF download button** in Hero. **Still TODO for you**: drop
+  your résumé at `public/resume.pdf` — the link is wired but will 404 until
+  the file is there.
+- [x] **"Now" mini-section** — new `Now.tsx` section between About and
+  Education. **Still TODO for you**: edit the three items + the
+  `lastUpdated` string when your focus changes.
+- [x] **Testimonials section** — new `Testimonials.tsx` with three placeholder
+  cards. **Still TODO for you**: replace the placeholder quotes with real
+  ones from students, parents, or coworkers (and ask permission before
+  publishing names).
+- [x] **Better Footer** — nav links, social icons, "Built with React + Vite",
+  and a last-updated date injected at build time via Vite `define`
+  (`__BUILD_DATE__`).
+- [x] **Real 404 page** — `App.tsx` checks `window.location.pathname` and
+  renders `NotFound` for anything that isn't `/`. SPA fallback still routes
+  unknown URLs to `index.html`; the app handles them from there.
 
 ---
 
