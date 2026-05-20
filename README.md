@@ -1,13 +1,11 @@
 # Personal Portfolio — Julian Avellaneda
 
-Personal portfolio site built with React 19, TypeScript, and Vite. Hosts the main
-portfolio at `/` and a small set of legal pages (privacy policy, ToS, child-safety
-policy, account-deletion request) for my published mobile apps under `/app/:appName/*`.
+Personal portfolio site built with React 19, TypeScript, and Vite.
 
 ## Stack
 
 - **React 19** + **TypeScript** + **Vite 7**
-- **React Router 7** for the legal-page sub-routes
+- **React Router 7** (single route + SPA catch-all redirect)
 - **EmailJS** for the contact form (no backend)
 - **react-vertical-timeline-component** for the experience timeline
 - **react-starfield** for the hero background
@@ -53,7 +51,6 @@ src/
   components/
     layout/               # Header, Footer
     sections/             # Hero, About, Projects, Skills, Experience, Contact, Education
-  pages/                  # Legal pages used by /app/:appName/* and /legal/*
 ```
 
 ## Roadmap

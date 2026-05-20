@@ -1,7 +1,7 @@
 # CLAUDE.md — Project guide for Claude Code
 
 This file is the authoritative project guide for AI assistants working in this repo.
-Reflects the **current** state (post Phase 1 cleanup, 2026-05-20).
+Reflects the **current** state (post legal-page removal, 2026-05-20).
 For the older agent guide see `GEMINI.md` (kept for reference, but partially stale).
 
 ---
@@ -10,10 +10,9 @@ For the older agent guide see `GEMINI.md` (kept for reference, but partially sta
 
 **Owner:** Julian Avellaneda (`javellaneda0213@gmail.com`).
 
-**Purpose:** Personal portfolio at `/`, plus a small set of dynamic legal pages
-under `/app/:appName/*` (privacy policy, ToS, child-safety policy, account
-deletion) used by my published mobile apps so a single repo hosts every legal
-URL the App Store / Play Store require.
+**Purpose:** Personal portfolio at `/`. Nothing else — legal pages for my
+published mobile apps used to live here too, but those now live on a separate
+domain.
 
 **Status:** Phase 1 of `PORTFOLIO_ROADMAP.md` is complete. Phases 2–6 (SEO,
 content, design polish, tech upgrades, blog) are open. Always read the roadmap
@@ -63,14 +62,11 @@ queued there.
     ├── index.css             # global theme tokens (CSS variables)
     ├── vite-env.d.ts         # typed VITE_EMAILJS_* env vars
     ├── assets/               # self.png (hero photo), react.svg (unused)
-    ├── components/
-    │   ├── layout/           # Header, Footer
-    │   └── sections/         # Hero, About, Education, Projects, Skills,
-    │                         #   Experience, Contact, ProjectCard,
-    │                         #   ProjectDetailModal
-    └── pages/                # PrivacyPolicy, TermsAndConditions,
-                              #   RequestAccountDeletion, ChildSafetyPolicy,
-                              #   LegalApps, AppLegalPages (+ LegalPages.css)
+    └── components/
+        ├── layout/           # Header, Footer
+        └── sections/         # Hero, About, Education, Projects, Skills,
+                              #   Experience, Contact, ProjectCard,
+                              #   ProjectDetailModal
 ```
 
 ---
@@ -80,18 +76,11 @@ queued there.
 ### 4.1 Routing (`src/Router.tsx`)
 
 - `/` → `App` (the portfolio one-pager)
-- `/app/:appName/privacy-policy` → `PrivacyPolicy`
-- `/app/:appName/terms-and-conditions` → `TermsAndConditions`
-- `/app/:appName/request-account-deletion` → `RequestAccountDeletion`
-- `/app/:appName/child-safety-policy` → `ChildSafetyPolicy`
-- `/legal/apps` → `LegalApps` (index of all apps)
-- `/legal/app/:appName` → `AppLegalPages` (per-app legal index)
 - `*` → `<Navigate to="/" replace />` (silent redirect — a proper 404 is queued
   in Phase 3 of the roadmap).
 
-The `/app/:appName/*` pages read `useParams().appName` and render the same
-component for any app. To add legal pages for a new app, just link to
-`/app/<name>/...` — no code changes needed.
+That's it. `react-router-dom` is kept only for the catch-all redirect and the
+future 404 page; if those go away, the dependency can go too.
 
 ### 4.2 Main page (`src/App.tsx`)
 
@@ -173,8 +162,7 @@ EmailJS values. `.env.local` is gitignored.
 ## 6. Conventions
 
 - **No new top-level docs without being asked.** This repo already has
-  `README.md`, `CLAUDE.md`, `GEMINI.md`, `PORTFOLIO_ROADMAP.md`, and
-  `LEGAL_PAGES_PLAN.md`. Don't add more.
+  `README.md`, `CLAUDE.md`, `GEMINI.md`, and `PORTFOLIO_ROADMAP.md`. Don't add more.
 - **Don't add comments that just describe what the code does.** Only comment
   the non-obvious *why*.
 - **Don't reintroduce `alert()`** for user-facing feedback. Use inline status.
@@ -207,11 +195,6 @@ EmailJS values. `.env.local` is gitignored.
    `percentage` field is queued for removal — don't invest effort tuning it.
    Only `languages`, `frameworks`, and `tools` are currently rendered;
    `concepts` and `softSkills` exist in data but are commented out in the JSX.
-
-**Add legal pages for a new app**
-1. No code changes needed. Link to `/app/<your-app-name>/privacy-policy`, etc.
-2. If the new app needs different copy, branch on `useParams().appName` inside
-   the relevant page component (e.g. `src/pages/PrivacyPolicy.tsx`).
 
 **Change colors / spacing**
 1. Edit the CSS variables in the `:root` block of `src/index.css`.

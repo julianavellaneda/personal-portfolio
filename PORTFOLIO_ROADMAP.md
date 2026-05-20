@@ -32,9 +32,8 @@ Wired up in the 2026-05-20 session. Canonical host used throughout: `https://jul
 - [x] **Real `<title>`** and `<meta name="description">` in `index.html`.
 - [x] **OpenGraph tags**: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`, plus `og:image:width/height/alt` and `og:site_name`.
 - [x] **Twitter card** (`summary_large_image` + title/description/image).
-- [x] **`robots.txt`** and **`sitemap.xml`** in `public/`. Sitemap currently lists `/` and all `/app/gather/*` + `/legal/*` routes — add new app entries when you publish them.
+- [x] **`robots.txt`** and **`sitemap.xml`** in `public/`. Sitemap is just `/` now that legal pages have moved to a separate domain.
 - [x] **JSON-LD `Person` schema** in `index.html` — name, jobTitle, url, image, email, sameAs (GitHub, LinkedIn). Add `alumniOf` when you decide how to phrase it.
-- [x] **Per-route meta** — hand-rolled `src/hooks/useDocumentMeta.ts` (no `react-helmet-async` dep) wired into all five legal pages so each gets its own tab title + description.
 - [x] **`theme-color`** meta + **`site.webmanifest`** (referencing the existing `/code-tag.svg`) + `apple-touch-icon` link.
 - [x] **Canonical URL** meta on `index.html`.
 - [ ] **OG image** — `index.html` and `sitemap.xml` reference `/og.png`. **Still TODO for you**: drop a 1200×630 PNG (name + tagline) at `public/og.png`. Until you do, social unfurls will 404 the image.
