@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 const AppLegalPages: React.FC = () => {
@@ -12,6 +13,11 @@ const AppLegalPages: React.FC = () => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ')
     : 'Unknown App';
+
+  useDocumentMeta({
+    title: `${displayAppName} Legal Pages`,
+    description: `Legal documents for ${displayAppName} — privacy policy, terms, account deletion, and child safety.`,
+  });
 
   return (
     <div className="legal-pages-container">

@@ -1,0 +1,17 @@
+{
+  "name": "Julian Avellaneda",
+  "short_name": "Julian A.",
+  "description": "Portfolio of Julian Avellaneda — software engineer & creator.",
+  "icons": [
+    {
+      "src": "/code-tag.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#1a1a2e",
+  "background_color": "#1a1a2e",
+  "display": "standalone",
+  "start_url": "/"
+}

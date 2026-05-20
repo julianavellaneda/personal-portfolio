@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 const PrivacyPolicy = () => {
@@ -6,6 +7,11 @@ const PrivacyPolicy = () => {
   const appName = routeAppName || "Gather";
   const contactEmail = "vella_media@proton.me";
   const lastUpdated = "October 2, 2025";
+
+  useDocumentMeta({
+    title: `Privacy Policy — ${appName}`,
+    description: `Privacy policy for ${appName}, describing what data we collect, how we use it, and your rights.`,
+  });
 
   // App-specific content mapping
   const appSpecificContent = {

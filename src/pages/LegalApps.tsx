@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 // Define the type for application data
@@ -9,6 +10,11 @@ interface LegalApp {
 }
 
 const LegalApps: React.FC = () => {
+  useDocumentMeta({
+    title: 'Legal Pages — Julian Avellaneda',
+    description: 'Index of legal documents for apps published by Julian Avellaneda.',
+  });
+
   // List of applications that have legal pages
   const legalApps: LegalApp[] = [
     { name: 'gather', displayName: 'Gather' },

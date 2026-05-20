@@ -1,75 +1,62 @@
-# React + TypeScript + Vite
+# Personal Portfolio — Julian Avellaneda
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site built with React 19, TypeScript, and Vite. Hosts the main
+portfolio at `/` and a small set of legal pages (privacy policy, ToS, child-safety
+policy, account-deletion request) for my published mobile apps under `/app/:appName/*`.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** + **TypeScript** + **Vite 7**
+- **React Router 7** for the legal-page sub-routes
+- **EmailJS** for the contact form (no backend)
+- **react-vertical-timeline-component** for the experience timeline
+- **react-starfield** for the hero background
+- **react-icons** for iconography
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Uses Bun, but npm/pnpm/yarn also work.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun install
+bun run dev          # vite dev server
+bun run build        # tsc -b && vite build
+bun run preview      # serve the production build
+bun run lint         # eslint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Copy `.env.example` to `.env.local` and fill in your EmailJS values:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+VITE_EMAILJS_SERVICE_ID=...
+VITE_EMAILJS_TEMPLATE_ID=...
+VITE_EMAILJS_PUBLIC_KEY=...
 ```
 
+The EmailJS public key is safe to ship in client code, but enable the domain
+allowlist in the EmailJS dashboard so the key can't be abused from other origins.
 
+## Deploy
 
-How to build
+The repo includes a Netlify-style `public/_redirects` for SPA fallback routing.
+Any host that supports SPA fallback (Netlify, Vercel, Cloudflare Pages) will work
+— point it at `bun run build` and `dist/` as the publish directory.
 
-bunx --bun vite build
+## Project layout
+
+```
+src/
+  App.tsx                 # main one-pager (hero, about, projects, …)
+  Router.tsx              # top-level routes
+  components/
+    layout/               # Header, Footer
+    sections/             # Hero, About, Projects, Skills, Experience, Contact, Education
+  pages/                  # Legal pages used by /app/:appName/* and /legal/*
+```
+
+## Roadmap
+
+See [`PORTFOLIO_ROADMAP.md`](./PORTFOLIO_ROADMAP.md) for the phased plan of
+improvements (bugs, SEO, content, design, tooling).

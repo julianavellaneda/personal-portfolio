@@ -5,12 +5,17 @@ interface ProjectCardProps {
   title: string;
   description: string;
   imageUrl: string;
-  demoUrl: string;
-  repoUrl: string;
+  demoUrl?: string;
+  repoUrl?: string;
   onClick: () => void;
 }
 
+const isRealUrl = (url?: string): url is string =>
+  typeof url === 'string' && url.length > 0 && url !== '#';
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl, demoUrl, repoUrl, onClick }) => {
+  const stop = (e: React.MouseEvent) => e.stopPropagation();
+
   return (
     <div className="project-card" onClick={onClick}>
       <img src={imageUrl} alt={title} className="project-image" />
@@ -18,8 +23,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl,
         <h3 className="project-title">{title}</h3>
         <p className="project-description">{description}</p>
         <div className="project-links">
-          <a href={demoUrl} target="_blank" rel="noopener noreferrer">Live Demo</a>
-          <a href={repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+          {isRealUrl(demoUrl) && (
+            <a href={demoUrl} target="_blank" rel="noopener noreferrer" onClick={stop}>
+              Live Demo
+            </a>
+          )}
+          {isRealUrl(repoUrl) && (
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer" onClick={stop}>
+              GitHub
+            </a>
+          )}
         </div>
       </div>
     </div>

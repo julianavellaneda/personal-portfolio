@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Starfield from 'react-starfield';
 import Header from './components/layout/Header';
 import Hero from './components/sections/Hero';
@@ -11,18 +11,16 @@ import Footer from './components/layout/Footer';
 import './App.css';
 import Education from './components/sections/Education';
 
+const SECTION_IDS = ['about', 'education', 'projects', 'skills', 'experience', 'contact'] as const;
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('');
-  const sectionRefs = {
-    about: useRef<HTMLDivElement>(null),
-    projects: useRef<HTMLDivElement>(null),
-    skills: useRef<HTMLDivElement>(null),
-    experience: useRef<HTMLDivElement>(null),
-    contact: useRef<HTMLDivElement>(null),
-    education: useRef<HTMLDivElement>(null),
-  };
 
   useEffect(() => {
+    const elements = SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,23 +29,12 @@ const App: React.FC = () => {
           }
         });
       },
-      { threshold: 0.2 } // Adjust threshold as needed
+      { threshold: 0.2 },
     );
 
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      Object.values(sectionRefs).forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, [sectionRefs]);
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div>
@@ -60,12 +47,12 @@ const App: React.FC = () => {
       <Header activeSection={activeSection} />
       <main>
         <Hero />
-        <div id="about" ref={sectionRefs.about}><About /></div>
-        <div id="education" ref={sectionRefs.education}><Education /></div>
-        <div id="projects" ref={sectionRefs.projects}><Projects /></div>
-        <div id="skills" ref={sectionRefs.skills}><Skills /></div>
-        <div id="experience" ref={sectionRefs.experience}><Experience /></div>
-        <div id="contact" ref={sectionRefs.contact}><Contact /></div>
+        <div id="about"><About /></div>
+        <div id="education"><Education /></div>
+        <div id="projects"><Projects /></div>
+        <div id="skills"><Skills /></div>
+        <div id="experience"><Experience /></div>
+        <div id="contact"><Contact /></div>
       </main>
       <Footer />
     </div>
@@ -73,4 +60,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-

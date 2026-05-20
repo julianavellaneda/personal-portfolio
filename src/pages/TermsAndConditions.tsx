@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 const TermsAndConditions = () => {
@@ -6,6 +7,11 @@ const TermsAndConditions = () => {
   const appName = routeAppName || "Gather";
   const contactEmail = "vella_media@proton.me";
   const lastUpdated = "October 2, 2025";
+
+  useDocumentMeta({
+    title: `Terms & Conditions — ${appName}`,
+    description: `Terms and conditions governing your use of ${appName}.`,
+  });
 
   return (
     <div className="legal-page-container">

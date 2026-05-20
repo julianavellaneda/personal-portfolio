@@ -1,3 +1,4 @@
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 const ChildSafetyPolicy = () => {
@@ -5,6 +6,11 @@ const ChildSafetyPolicy = () => {
   const appName = "Gather";
   const contactEmail = "vella_media@proton.me";
   const lastUpdated = "October 12, 2025";
+
+  useDocumentMeta({
+    title: `Child Safety Policy — ${appName}`,
+    description: `Child safety standards and reporting procedures for ${appName}.`,
+  });
 
   return (
     <div className="legal-page-container">

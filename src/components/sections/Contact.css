@@ -66,6 +66,24 @@
   background-color: #00b38f;
 }
 
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact-form-status {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.contact-form-status--success {
+  color: var(--accent-color-1);
+}
+
+.contact-form-status--error {
+  color: #ff6b6b;
+}
+
 @media (max-width: 768px) {
   .contact-section {
     padding: 2rem 1rem;

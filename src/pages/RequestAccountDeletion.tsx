@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import './LegalPages.css';
 
 const RequestAccountDeletion = () => {
@@ -7,6 +8,11 @@ const RequestAccountDeletion = () => {
   const appName = routeAppName || "Gather";
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useDocumentMeta({
+    title: `Request Account Deletion — ${appName}`,
+    description: `Request permanent deletion of your ${appName} account and associated data.`,
+  });
   
   // In a real app, you would get the user's email from their session
  // For this pseudo-code, we'll let them type it.
