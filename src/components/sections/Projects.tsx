@@ -57,7 +57,7 @@ const projects: Project[] = [
   {
     title: 'Project Three (placeholder)',
     description: 'Short one-liner about what this project does.',
-    imageUrl: 'https://via.placeholder.com/600x400/1a1a2e/00ffc3?text=Project+3',
+    imageUrl: '',
     technologies: ['Tech', 'Stack', 'Here'],
     fullDescription: 'Longer paragraph describing what the project is and who it is for.',
     problem: 'What problem does this project solve? Who has it?',
@@ -71,7 +71,7 @@ const projects: Project[] = [
   {
     title: 'Project Four (placeholder)',
     description: 'Short one-liner about what this project does.',
-    imageUrl: 'https://via.placeholder.com/600x400/1a1a2e/471396?text=Project+4',
+    imageUrl: '',
     technologies: ['Tech', 'Stack', 'Here'],
     fullDescription: 'Longer paragraph describing what the project is and who it is for.',
     problem: 'What problem does this project solve?',
@@ -86,23 +86,25 @@ const projects: Project[] = [
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
-
   return (
-    <section id="projects" className="projects-section" aria-label="My Projects">
-      <h2>Projects</h2>
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} onClick={() => handleProjectClick(project)} />
-        ))}
+    <section id="projects" className="section" aria-label="My Projects">
+      <div className="container">
+        <div className="reveal">
+          <span className="eyebrow"><span className="eyebrow-num">05</span> Shipped</span>
+          <h2 className="section-title">Projects</h2>
+        </div>
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              index={index}
+              {...project}
+              onClick={() => setSelectedProject(project)}
+            />
+          ))}
+        </div>
       </div>
-      <ProjectDetailModal project={selectedProject} onClose={handleCloseModal} />
+      <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 };

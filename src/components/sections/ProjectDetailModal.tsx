@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './ProjectDetailModal.css';
 
 interface Project {
@@ -23,80 +23,85 @@ interface ProjectDetailModalProps {
 const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsClosing(true);
     setTimeout(() => {
       onClose();
       setIsClosing(false);
     }, 300);
-  };
+  }, [onClose]);
 
-  if (!project) {
-    return null;
-  }
+  // Lock body scroll and wire up Escape-to-close while the modal is open.
+  useEffect(() => {
+    if (!project) return;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [project, handleClose]);
+
+  if (!project) return null;
+
+  const sections: { label: string; body?: string }[] = [
+    { label: 'Problem', body: project.problem },
+    { label: 'Role', body: project.role },
+    { label: 'What I Built', body: project.built },
+    { label: 'Challenges', body: project.challenges },
+    { label: 'Solutions', body: project.solutions },
+    { label: 'What I Learned', body: project.learned },
+  ];
 
   return (
-    <div className={`modal-overlay ${isClosing ? 'closing' : ''}`} onClick={handleClose}>
-      <div className={`modal-content ${isClosing ? 'closing' : ''}`} onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={handleClose} aria-label="Close project details">X</button>
-        <h2>{project.title}</h2>
+    <div
+      className={`modal-backdrop open ${isClosing ? 'closing' : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      onClick={handleClose}
+    >
+      <div className="modal-sheet" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-head">
+          <h2 className="modal-title" id="modal-title">{project.title}</h2>
+          <button className="modal-close" onClick={handleClose} aria-label="Close project details">
+            ×
+          </button>
+        </div>
 
         <p className="modal-lead">{project.fullDescription}</p>
 
-        <div className="modal-tech">
+        <div className="modal-techs">
           {project.technologies.map((tech) => (
-            <span key={tech} className="modal-tech-chip">{tech}</span>
+            <span key={tech} className="tech-chip">{tech}</span>
           ))}
         </div>
 
-        {project.problem && (
-          <section className="modal-section">
-            <h3>Problem</h3>
-            <p>{project.problem}</p>
-          </section>
-        )}
+        <div>
+          {sections.map(
+            (s) =>
+              s.body && (
+                <section key={s.label} className="modal-section">
+                  <h3>{s.label}</h3>
+                  <p>{s.body}</p>
+                </section>
+              ),
+          )}
 
-        {project.role && (
-          <section className="modal-section">
-            <h3>Role</h3>
-            <p>{project.role}</p>
-          </section>
-        )}
-
-        {project.built && (
-          <section className="modal-section">
-            <h3>What I Built</h3>
-            <p>{project.built}</p>
-          </section>
-        )}
-
-        <section className="modal-section">
-          <h3>Challenges</h3>
-          <p>{project.challenges}</p>
-        </section>
-
-        <section className="modal-section">
-          <h3>Solutions</h3>
-          <p>{project.solutions}</p>
-        </section>
-
-        {project.learned && (
-          <section className="modal-section">
-            <h3>What I Learned</h3>
-            <p>{project.learned}</p>
-          </section>
-        )}
-
-        {project.screenshots && project.screenshots.length > 0 && (
-          <section className="modal-section">
-            <h3>Screenshots</h3>
-            <div className="modal-screenshots">
-              {project.screenshots.map((src) => (
-                <img key={src} src={src} alt={`${project.title} screenshot`} loading="lazy" />
-              ))}
-            </div>
-          </section>
-        )}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <section className="modal-section">
+              <h3>Screenshots</h3>
+              <div className="modal-screenshots">
+                {project.screenshots.map((src) => (
+                  <img key={src} src={src} alt={`${project.title} screenshot`} loading="lazy" />
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,71 +1,168 @@
-html {
-  scroll-behavior: smooth;
-}
-
+/* ─────────────────────────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────────────────────────── */
 :root {
-  /* Color Palette */
-  --primary-background: #1a1a2e; /* Dark blue/purple for main backgrounds */
-  --secondary-background: #2a2a4e; /* Slightly lighter dark blue/purple for cards/sections */
-  --accent-color-1: #00ffc3; /* Bright teal/cyan for highlights and icons */
-  --accent-color-2: #471396; /* Deep purple for subtle accents */
-  --text-color-light: #e0e1dd; /* Light gray for primary text */
-  --text-color-medium: #a9a9a9; /* Medium gray for secondary text/proficiency */
-  --text-color-dark: #1a1a2e; /* Dark text for elements on light backgrounds */
-  --border-color: #4a4e69; /* Border color for various elements */
-
-  font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: dark;
-  color: var(--text-color-light);
-  background-color: var(--primary-background);
+  --bg-0:        #0A0A12;
+  --bg-1:        #11111B;
+  --bg-2:        #181826;
+  --line:        rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --text-hi:     #F5F5F7;
+  --text:        #D6D6DE;
+  --text-lo:     #8A8A99;
+  --accent:      #00FFC3;
+  --accent-ink:  #06231B;
+  --violet:      #6F3CFF;
+  --grad-edge:   linear-gradient(135deg, #00FFC3 0%, #6F3CFF 100%);
+  --glass-bg:    rgba(20, 20, 32, 0.55);
 
+  /* type scale */
+  --fs-display:  clamp(3.25rem, 6vw + 1rem, 6.25rem);
+  --fs-h2:       clamp(2rem, 2.4vw + 1rem, 3rem);
+  --fs-h3:       clamp(1.125rem, .6vw + 1rem, 1.375rem);
+  --fs-lead:     clamp(1.125rem, .4vw + 1rem, 1.375rem);
+  --fs-body:     1rem;
+  --fs-meta:     .8125rem;
+
+  /* spacing */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 72px;
+  --s-9: 112px; --s-10: 160px;
+
+  --ease-enter: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-exit:  cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-family: 'Space Grotesk', system-ui, sans-serif;
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* ─────────────────────────────────────────────────────────────
+   RESET + BASE
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
   min-width: 320px;
-  min-height: 100vh;
-  background-color: var(--primary-background);
 }
 
-h1 {
-  font-size: 3.2em;
+/* film-grain overlay */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+#root { width: 100%; }
+main, header, footer { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { margin: 0; color: var(--text-hi); font-weight: 500; }
+p { margin: 0; }
+button { font: inherit; cursor: pointer; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* container */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 48px);
+}
+
+/* section frame */
+.section {
+  position: relative;
+  padding-top: clamp(96px, 12vw, 160px);
+  padding-bottom: clamp(96px, 12vw, 160px);
+}
+
+/* eyebrow number + label */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  margin-bottom: var(--s-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.eyebrow .eyebrow-num {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  color: var(--text-hi);
+  text-transform: none;
+  line-height: 1;
+}
+
+h2.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.02em;
+  font-weight: 500;
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms var(--ease-enter), transform 600ms var(--ease-enter);
+  transition-delay: var(--reveal-delay, 0ms);
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }
 
+/* card base — shared by Now, Projects, Testimonials */
+.card {
+  position: relative;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 220ms var(--ease-enter), transform 220ms var(--ease-enter), background 220ms var(--ease-enter);
+}
+.card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+.card .corner-mark {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 24px; height: 24px;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-enter);
+  pointer-events: none;
+}
+.card:hover .corner-mark { opacity: 0.6; }
+.card .corner-mark::before, .card .corner-mark::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+}
+.card .corner-mark::before { top: 0; right: 0; width: 24px; height: 1px; }
+.card .corner-mark::after  { top: 0; right: 0; width: 1px; height: 24px; }

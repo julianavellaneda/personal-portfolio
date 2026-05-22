@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 2rem 1.5rem;
   text-align: center;
-  color: var(--text-color-light);
+  color: var(--text);
 }
 
 .notfound-content {
@@ -13,36 +13,44 @@
 }
 
 .notfound-code {
-  font-size: 5rem;
-  font-weight: 700;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 6rem;
+  font-weight: 400;
   margin: 0;
-  color: var(--accent-color-1);
+  color: var(--accent);
   letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .notfound-title {
-  font-size: 1.75rem;
-  margin: 0.5rem 0 1rem;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin: 0.75rem 0 1rem;
 }
 
 .notfound-body {
-  color: var(--text-color-medium);
-  line-height: 1.5;
+  color: var(--text-lo);
+  line-height: 1.6;
   margin-bottom: 2rem;
 }
 
 .notfound-cta {
-  display: inline-block;
-  padding: 0.7rem 1.4rem;
-  background-color: var(--accent-color-1);
-  color: var(--primary-background);
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: filter 220ms var(--ease-enter), transform 220ms var(--ease-enter);
 }
 
 .notfound-cta:hover {
-  background-color: #ffffff;
-  transform: translateY(-1px);
+  filter: brightness(1.05);
+  transform: translateY(-2px);
 }

@@ -37,46 +37,80 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="contact-section">
-      <h2>Contact Me</h2>
-      <div className="contact-links">
-        <a href="mailto:javellaneda0213@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
-          <FaEnvelope /> Email
-        </a>
-        <a href="https://github.com/Mclovin0213" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-          <FaGithub /> GitHub
-        </a>
-        <a href="http://www.linkedin.com/in/julianavellaneda" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-          <FaLinkedin /> LinkedIn
-        </a>
-      </div>
-      <div className="contact-form">
-        <h3>Send me a message</h3>
-        <form ref={form} onSubmit={sendEmail}>
-          <label htmlFor="contact-name">Name:</label>
-          <input id="contact-name" type="text" name="name" required />
+    <section id="contact" className="section" aria-label="Contact">
+      <div className="container">
+        <div className="contact-grid">
+          <div className="reveal">
+            <span className="eyebrow"><span className="eyebrow-num">09</span> Get in Touch</span>
+            <h2 className="section-title">Contact Me</h2>
+            <p className="contact-stand">Riverside, CA · usually replies within 24h</p>
+            <div className="contact-links">
+              <a className="contact-link" href="mailto:javellaneda0213@gmail.com">
+                <span className="icon"><FaEnvelope /></span>
+                <span className="label">Email</span>
+                <span className="arr">↗</span>
+              </a>
+              <a
+                className="contact-link"
+                href="https://github.com/Mclovin0213"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon"><FaGithub /></span>
+                <span className="label">GitHub</span>
+                <span className="arr">↗</span>
+              </a>
+              <a
+                className="contact-link"
+                href="http://www.linkedin.com/in/julianavellaneda"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="icon"><FaLinkedin /></span>
+                <span className="label">LinkedIn</span>
+                <span className="arr">↗</span>
+              </a>
+            </div>
+          </div>
 
-          <label htmlFor="contact-email">Email:</label>
-          <input id="contact-email" type="email" name="email" required />
+          <div
+            className="contact-form-card reveal"
+            style={{ '--reveal-delay': '120ms' } as React.CSSProperties}
+          >
+            <h3>Send me a message</h3>
+            <form ref={form} onSubmit={sendEmail}>
+              <label htmlFor="contact-name">Name</label>
+              <input id="contact-name" type="text" name="name" placeholder="Your name" required />
 
-          <label htmlFor="contact-message">Message:</label>
-          <textarea id="contact-message" name="message" rows={5} required></textarea>
+              <label htmlFor="contact-email">Email</label>
+              <input id="contact-email" type="email" name="email" placeholder="you@example.com" required />
 
-          <button type="submit" disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending…' : 'Send Message'}
-          </button>
+              <label htmlFor="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={5}
+                placeholder="What are we building?"
+                required
+              ></textarea>
 
-          {status === 'success' && (
-            <p className="contact-form-status contact-form-status--success" role="status">
-              Thanks — message sent. I'll get back to you soon.
-            </p>
-          )}
-          {status === 'error' && (
-            <p className="contact-form-status contact-form-status--error" role="alert">
-              Something went wrong. Please email me directly at javellaneda0213@gmail.com.
-            </p>
-          )}
-        </form>
+              <button type="submit" className="contact-submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
+              </button>
+
+              {status === 'success' && (
+                <p className="contact-status contact-status--success" role="status">
+                  Thanks — message sent. I'll get back to you soon.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="contact-status contact-status--error" role="alert">
+                  Something went wrong. Please email me directly at javellaneda0213@gmail.com.
+                </p>
+              )}
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

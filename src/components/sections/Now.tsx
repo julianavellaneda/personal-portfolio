@@ -22,18 +22,30 @@ const items: { title: string; body: string }[] = [
 
 const Now: React.FC = () => {
   return (
-    <section id="now" className="now-section" aria-label="What I'm currently focused on">
-      <div className="now-header">
-        <h2>Now</h2>
-        <span className="now-updated">Updated {lastUpdated}</span>
-      </div>
-      <div className="now-grid">
-        {items.map((item) => (
-          <div key={item.title} className="now-card">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
+    <section id="now" className="section now" aria-label="What I'm currently focused on">
+      <div className="container">
+        <div className="now-header reveal">
+          <div>
+            <span className="eyebrow"><span className="eyebrow-num">03</span> Field Log</span>
+            <h2 className="section-title">Now</h2>
           </div>
-        ))}
+          <span className="now-updated tabular">Updated {lastUpdated}</span>
+        </div>
+        <div className="now-grid">
+          {items.map((item, idx) => (
+            <article
+              key={item.title}
+              className="card now-card reveal"
+              style={{ '--reveal-delay': `${idx * 60}ms` } as React.CSSProperties}
+            >
+              <span className="corner-mark" aria-hidden="true"></span>
+              <span className="now-counter">→ {String(idx + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <div className="divider"></div>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

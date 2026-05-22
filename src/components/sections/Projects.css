@@ -1,19 +1,7 @@
-.projects-section {
-  padding: 4rem 0;
-}
-
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-6);
+  margin-top: var(--s-7);
 }
-
-@media (max-width: 768px) {
-  .projects-section {
-    padding: 2rem 1rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 880px) { .projects-grid { grid-template-columns: 1fr; } }

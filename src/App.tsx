@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Starfield from 'react-starfield';
 import Header from './components/layout/Header';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
@@ -45,6 +44,26 @@ const App: React.FC = () => {
     return () => observer.disconnect();
   }, [isHome]);
 
+  // Reveal-on-scroll: fade/slide elements in as they enter the viewport.
+  useEffect(() => {
+    if (!isHome) return;
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => revealObserver.observe(el));
+    return () => revealObserver.disconnect();
+  }, [isHome]);
+
   if (!isHome) {
     return (
       <div>
@@ -56,23 +75,17 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Starfield
-        starCount={1500}
-        starColor={[255, 25, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
       <Header activeSection={activeSection} />
       <main>
         <Hero />
-        <div id="about"><About /></div>
+        <About />
         <Now />
-        <div id="education"><Education /></div>
-        <div id="projects"><Projects /></div>
-        <div id="skills"><Skills /></div>
-        <div id="experience"><Experience /></div>
+        <Education />
+        <Projects />
+        <Skills />
+        <Experience />
         <Testimonials />
-        <div id="contact"><Contact /></div>
+        <Contact />
       </main>
       <Footer />
     </div>

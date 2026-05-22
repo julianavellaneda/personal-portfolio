@@ -1,63 +1,39 @@
-.footer {
-  color: var(--text-color-light);
-  padding: 2.5rem 1.5rem 1.5rem;
-  border-top: 1px solid var(--border-color);
-  background-color: rgba(0, 0, 0, 0.2);
+.site-footer {
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  padding: 48px 0;
+  margin-top: var(--s-10);
 }
-
 .footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: var(--s-5);
   text-align: center;
 }
-
 .footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem 1.25rem;
+  display: flex; gap: var(--s-6); flex-wrap: wrap; justify-content: center;
 }
-
 .footer-nav a {
-  color: var(--text-color-light);
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+  font-size: 14px;
+  color: var(--text-lo);
+  transition: color 180ms var(--ease-enter);
 }
-
-.footer-nav a:hover {
-  color: var(--accent-color-1);
-}
-
+.footer-nav a:hover { color: var(--text-hi); }
 .footer-social {
-  display: flex;
-  gap: 1rem;
+  display: flex; gap: var(--s-4);
 }
-
 .footer-social a {
-  color: var(--text-color-medium);
-  font-size: 1.4rem;
-  transition: color 0.2s ease;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text-lo);
+  transition: color 180ms var(--ease-enter), border-color 180ms var(--ease-enter);
 }
-
-.footer-social a:hover {
-  color: var(--accent-color-1);
-}
-
+.footer-social a:hover { color: var(--accent); border-color: var(--line-strong); }
+.footer-social svg { width: 16px; height: 16px; }
 .footer-meta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-  color: var(--text-color-medium);
-}
-
-.footer-dot {
-  color: var(--border-color);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-meta);
+  color: var(--text-lo);
+  letter-spacing: 0.04em;
 }

@@ -1,103 +1,40 @@
-.education-section {
-  padding: 4rem 0;
-  text-align: center;
+.education-strip {
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 32px 0;
 }
-
-.education-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #e0e0e0; /* Light gray for heading */
-}
-
 .education-list {
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
+}
+.education-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
   align-items: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: var(--s-5);
+  padding: var(--s-5) 0;
 }
-
-.education-item {
-  background-color: #1a202c; /* Darker background for the card */
-  border-radius: 12px;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Softer shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.education-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-}
-
+.education-row + .education-row { border-top: 1px solid var(--line); }
 .education-icon {
-  font-size: 3rem;
-  color: #63b3ed; /* A light blue for the icon */
-  background-color: #2d3748; /* Slightly lighter dark background for icon circle */
-  border-radius: 50%;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 6rem; /* Ensure icon circle has enough space */
-  height: 6rem;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
 }
-
-.education-details {
-  text-align: left;
-  flex-grow: 1;
-}
-
+.education-icon svg { width: 22px; height: 22px; }
 .education-details h3 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #ffffff; /* White for degree */
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
 }
-
-.education-details .institution {
-  font-size: 1.2rem;
-  color: #a0aec0; /* Lighter gray for institution */
-  margin-bottom: 0.25rem;
-}
-
+.education-details .institution { color: var(--text); font-size: 0.95rem; }
 .education-details .year {
-  font-size: 1rem;
-  color: #cbd5e0; /* Even lighter gray for year */
-}
-
-@media (max-width: 768px) {
-  .education-section {
-    padding: 2rem 1rem;
-  }
-
-  .education-item {
-    flex-direction: column;
-    text-align: center;
-    padding: 1.5rem;
-  }
-
-  .education-icon {
-    margin-bottom: 1rem;
-  }
-
-  .education-details {
-    text-align: center;
-  }
-
-  .education-details h3 {
-    font-size: 1.5rem;
-  }
-
-  .education-details .institution {
-    font-size: 1rem;
-  }
-
-  .education-details .year {
-    font-size: 0.9rem;
-  }
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-meta);
+  color: var(--text-lo);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
 }

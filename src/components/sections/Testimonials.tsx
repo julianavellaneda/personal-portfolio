@@ -1,6 +1,5 @@
 import React from 'react';
 import './Testimonials.css';
-import { FaQuoteLeft } from 'react-icons/fa';
 
 // TODO: replace placeholders with real quotes (students / parents / coworkers).
 // Aim for 2-3 short, specific ones. Ask permission before publishing names.
@@ -31,21 +30,40 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+const initialsOf = (name: string) =>
+  name.split(' ').map((part) => part[0]).slice(0, 2).join('');
+
 const Testimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="testimonials-section" aria-label="Testimonials">
-      <h2>Testimonials</h2>
-      <div className="testimonials-grid">
-        {testimonials.map((t, i) => (
-          <figure key={i} className="testimonial-card">
-            <FaQuoteLeft className="testimonial-mark" aria-hidden="true" />
-            <blockquote>{t.quote}</blockquote>
-            <figcaption>
-              <span className="testimonial-author">{t.author}</span>
-              <span className="testimonial-role">{t.role}</span>
-            </figcaption>
-          </figure>
-        ))}
+    <section id="testimonials" className="section testimonials" aria-label="Testimonials">
+      <div className="container">
+        <div className="testi-head reveal">
+          <div>
+            <span className="eyebrow"><span className="eyebrow-num">08</span> Voices</span>
+            <h2 className="section-title">Testimonials</h2>
+          </div>
+          <span className="testi-note">Coming soon — placeholders</span>
+        </div>
+        <div className="testi-grid">
+          {testimonials.map((t, i) => (
+            <figure
+              key={i}
+              className="card testi-card reveal"
+              style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
+            >
+              <span className="corner-mark" aria-hidden="true"></span>
+              <span className="testi-mark" aria-hidden="true">&ldquo;</span>
+              <blockquote className="testi-quote">{t.quote}</blockquote>
+              <figcaption className="testi-figcap">
+                <span className="testi-monogram" aria-hidden="true">{initialsOf(t.author)}</span>
+                <span className="testi-author">
+                  <span className="name">{t.author}</span>
+                  <span className="role">{t.role}</span>
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );

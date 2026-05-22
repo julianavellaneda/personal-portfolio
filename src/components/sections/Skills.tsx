@@ -59,33 +59,43 @@ const TIER_ORDER: Tier[] = ['Daily', 'Comfortable', 'Familiar'];
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="skills-section" aria-label="My Skills">
-      <h2>Skills</h2>
-      <div className="skills-grid">
-        {Object.entries(skills).map(([category, items]) => (
-          <div key={category} className="skill-category">
-            <h3>{category}</h3>
-            {TIER_ORDER.map((tier) => {
-              const tierSkills = items.filter((s) => s.tier === tier);
-              if (tierSkills.length === 0) return null;
-              return (
-                <div key={tier} className="skill-tier">
-                  <span className="skill-tier-label">{tier}</span>
-                  <ul className="skill-chip-list">
-                    {tierSkills.map((skill) => (
-                      <li key={skill.name} className="skill-chip">
-                        <span className="skill-chip-icon" aria-hidden="true">
-                          {skill.icon}
-                        </span>
-                        <span className="skill-chip-name">{skill.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        ))}
+    <section id="skills" className="section skills" aria-label="My Skills">
+      <div className="container">
+        <div className="reveal">
+          <span className="eyebrow"><span className="eyebrow-num">06</span> Toolkit</span>
+          <h2 className="section-title">Skills</h2>
+        </div>
+        <div className="skills-grid">
+          {Object.entries(skills).map(([category, items], ci) => (
+            <div
+              key={category}
+              className="skill-cat reveal"
+              style={{ '--reveal-delay': `${ci * 80}ms` } as React.CSSProperties}
+            >
+              <h3>{category}</h3>
+              {TIER_ORDER.map((tier) => {
+                const tierSkills = items.filter((s) => s.tier === tier);
+                if (tierSkills.length === 0) return null;
+                return (
+                  <div key={tier} className="skill-tier">
+                    <div className={`tier-label ${tier.toLowerCase()}`}>
+                      <span className="tdot" aria-hidden="true"></span>
+                      {tier}
+                    </div>
+                    <ul className="skill-chip-list">
+                      {tierSkills.map((skill) => (
+                        <li key={skill.name} className="skill-chip">
+                          <span className="skill-icon" aria-hidden="true">{skill.icon}</span>
+                          <span>{skill.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

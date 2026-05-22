@@ -22,8 +22,8 @@ const buildDate: string = (() => {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
-      <div className="footer-inner">
+    <footer className="site-footer">
+      <div className="container footer-inner">
         <nav className="footer-nav" aria-label="Footer">
           {NAV.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>
@@ -52,13 +52,9 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        <div className="footer-meta">
-          <span>&copy; {new Date().getFullYear()} Julian Avellaneda</span>
-          <span className="footer-dot" aria-hidden="true">·</span>
-          <span>Built with React + Vite</span>
-          <span className="footer-dot" aria-hidden="true">·</span>
-          <span>Updated {buildDate}</span>
-        </div>
+        <p className="footer-meta">
+          &copy; {new Date().getFullYear()} Julian Avellaneda · Built with React + Vite · Updated {buildDate}
+        </p>
       </div>
     </footer>
   );
