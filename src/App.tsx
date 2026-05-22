@@ -84,7 +84,7 @@ const App: React.FC = () => {
         <Projects />
         <Skills />
         <Experience />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <Contact />
       </main>
       <Footer />
