@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
               </a>
               <a
                 className="contact-link"
-                href="https://github.com/Mclovin0213"
+                href="https://github.com/julianavellaneda"
                 target="_blank"
                 rel="noopener noreferrer"
               >

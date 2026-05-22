@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
 
         <div className="footer-social">
           <a
-            href="https://github.com/Mclovin0213"
+            href="https://github.com/julianavellaneda"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"

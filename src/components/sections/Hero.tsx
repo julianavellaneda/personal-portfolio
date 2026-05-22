@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           Software engineer shipping AI-driven mobile apps. Teaching K&#8211;12 by day.
         </p>
         <div className="social-links reveal" style={delay(180)}>
-          <a href="https://github.com/Mclovin0213" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/julianavellaneda" target="_blank" rel="noopener noreferrer">
             <FaGithub /> <span>GitHub</span>
           </a>
           <a
