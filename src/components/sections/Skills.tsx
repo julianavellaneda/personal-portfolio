@@ -16,8 +16,14 @@ import {
   SiXcode,
   SiAndroidstudio,
   SiGoogleplay,
+  SiRust,
+  SiBevy,
+  SiClaude,
+  SiAnthropic,
+  SiOpenai,
 } from 'react-icons/si';
 import { FaJava, FaApple, FaWindows, FaFileAlt } from 'react-icons/fa';
+import { FaBrain, FaRobot } from 'react-icons/fa6';
 
 type Tier = 'Daily' | 'Comfortable' | 'Familiar';
 
@@ -35,14 +41,23 @@ const skills: { [category: string]: Skill[] } = {
     { name: 'HTML', icon: <SiHtml5 />, tier: 'Comfortable' },
     { name: 'CSS', icon: <SiCss />, tier: 'Comfortable' },
     { name: 'Java', icon: <FaJava />, tier: 'Comfortable' },
+    { name: 'Rust', icon: <SiRust />, tier: 'Comfortable' },
     { name: 'C#', icon: <SiSharp />, tier: 'Familiar' },
   ],
   Frameworks: [
     { name: 'Flutter', icon: <SiFlutter />, tier: 'Daily' },
     { name: 'Firebase', icon: <SiFirebase />, tier: 'Daily' },
     { name: 'React', icon: <SiReact />, tier: 'Comfortable' },
+    { name: 'Bevy', icon: <SiBevy />, tier: 'Comfortable' },
     { name: 'ASP.NET Core', icon: <SiDotnet />, tier: 'Familiar' },
     { name: 'Godot', icon: <SiGodotengine />, tier: 'Familiar' },
+  ],
+  AI: [
+    { name: 'Claude Code', icon: <SiClaude />, tier: 'Daily' },
+    { name: 'Prompt Engineering', icon: <FaBrain />, tier: 'Daily' },
+    { name: 'Anthropic API', icon: <SiAnthropic />, tier: 'Comfortable' },
+    { name: 'OpenAI API', icon: <SiOpenai />, tier: 'Comfortable' },
+    { name: 'Agentic Workflows', icon: <FaRobot />, tier: 'Comfortable' },
   ],
   Tools: [
     { name: 'Git / GitHub', icon: <SiGithub />, tier: 'Daily' },

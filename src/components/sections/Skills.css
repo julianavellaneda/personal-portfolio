@@ -2,7 +2,8 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* auto-fit so adding a category doesn't orphan it on a row of its own */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--s-7);
   margin-top: var(--s-7);
 }

@@ -4,9 +4,10 @@ import { FaGraduationCap } from 'react-icons/fa';
 
 const education = [
   {
-    degree: 'Bachelor of Science (BS) in Computer Software Engineering',
+    degree: 'Bachelor of Science (B.S.) in Software Engineering',
     institution: 'California Baptist University',
-    year: '2020 – 2025',
+    year: '2020 – May 2025',
+    status: 'Graduated',
   },
 ];
 
@@ -33,7 +34,7 @@ const Education: React.FC = () => {
                 <p className="institution">{edu.institution}</p>
                 <p className="year tabular">{edu.year}</p>
               </div>
-              <div></div>
+              <div className="education-status">{edu.status}</div>
             </div>
           ))}
         </div>

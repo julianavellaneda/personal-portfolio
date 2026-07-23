@@ -17,7 +17,7 @@ const About: React.FC = () => {
               During high school, my focus shifted toward video editing, where I shot and edited over 30 videos and short films. This passion led me to major in Film at California Baptist University. However, after a few semesters, my deep-seated passion for programming resurfaced, prompting me to switch my major to Software Engineering.
             </p>
             <p>
-              In the past two years since making that pivotal decision, I've immersed myself in the programming landscape, gaining extensive knowledge and practical skills. My recent role as a Programming Instructor at CodingMinds Academy not only solidified my grasp of fundamental programming concepts but also exposed me to and taught me new frameworks and languages, further accelerating my development as a software engineer.
+              I graduated from CBU in May 2025 with a B.S. in Software Engineering, and I've spent the time since building and shipping. Teaching K&#8211;12 students as a Programming Instructor at CodingMinds Academy keeps my fundamentals sharp and constantly pushes me into new frameworks and languages. Outside the classroom I've shipped AI-driven mobile apps to the App Store, open-sourced a self-hostable job tracker, and gone deep on Rust &mdash; most recently writing a full tactics game in Bevy for a 72-hour game jam. I like problems that make me learn a new stack to solve them.
             </p>
           </div>
           <figure className="about-image reveal" style={{ '--reveal-delay': '120ms' } as React.CSSProperties}>
