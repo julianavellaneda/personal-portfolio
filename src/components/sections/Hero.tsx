@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           Julian <span className="grad">Avellaneda</span>
         </h1>
         <p className="hero-subtitle reveal" style={delay(120)}>
-          Software engineer shipping AI-driven mobile apps. Teaching K&#8211;12 by day. HELLO
+          Software engineer shipping AI-driven mobile apps. Teaching K&#8211;12 by day.
         </p>
         <div className="social-links reveal" style={delay(180)}>
           <a href="https://github.com/julianavellaneda" target="_blank" rel="noopener noreferrer">
