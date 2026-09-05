@@ -16,14 +16,14 @@ const Hero: React.FC = () => {
         <div className="reveal">
           <span className="hero-eyebrow">
             <span className="dot" aria-hidden="true"></span>
-            01 — Software Engineer × Educator
+            01 — Software Engineer × Educator 
           </span>
         </div>
         <h1 className="hero-title reveal" style={delay(60)}>
           Julian <span className="grad">Avellaneda</span>
         </h1>
         <p className="hero-subtitle reveal" style={delay(120)}>
-          Software engineer shipping AI-driven mobile apps. Teaching K&#8211;12 by day.
+          Software engineer shipping AI-driven mobile apps. Teaching K&#8211;12 by day. HELLO
         </p>
         <div className="social-links reveal" style={delay(180)}>
           <a href="https://github.com/julianavellaneda" target="_blank" rel="noopener noreferrer">
